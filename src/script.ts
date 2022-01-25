@@ -1,66 +1,63 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const loadedScripts: {
-  src?: string
-} = {}
-
-type ScriptStatusType = {
+const cachedScripts: string[] = []
+interface IScriptResult {
   loaded: boolean
   error: boolean
 }
 
-const lazerpayJs =
-  'https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout%401.0.1/dist/index.min.js'
-export default function useScript() {
-  const [state, setState] = useState<ScriptStatusType>({
+export default function useLazerpayScript(): boolean[] {
+  const src =
+    'https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout%401.0.1/dist/index.min.js'
+
+  const [state, setState] = useState<IScriptResult>({
     loaded: false,
     error: false
   })
 
-  useEffect(() => {
-    const scriptTag = document.getElementById('lazerpay_script')
-    const scriptSrc = scriptTag && scriptTag.getAttribute('src')
-
-    if (scriptSrc)
-      return setState({
-        loaded: true,
-        error: false
-      })
-
-    loadedScripts.src = lazerpayJs
-    const script = document.createElement('script')
-    script.id = 'lazerpay_script'
-    script.src = lazerpayJs
-    script.async = true
-
-    const onScriptLoad = () => {
+  useEffect((): any => {
+    if (cachedScripts.includes(src)) {
       setState({
         loaded: true,
         error: false
       })
+    } else {
+      cachedScripts.push(src)
+
+      const script = document.createElement('script')
+      script.src = src
+      script.async = true
+
+      const onScriptLoad = (): void => {
+        setState({
+          loaded: true,
+          error: false
+        })
+      }
+
+      const onScriptError = (): void => {
+        const index = cachedScripts.indexOf(src)
+        if (index >= 0) cachedScripts.splice(index, 1)
+        script.remove()
+
+        setState({
+          loaded: true,
+          error: true
+        })
+      }
+
+      script.addEventListener('load', onScriptLoad)
+      script.addEventListener('complete', onScriptLoad)
+      script.addEventListener('error', onScriptError)
+
+      document.body.appendChild(script)
+
+      return (): void => {
+        script.removeEventListener('load', onScriptLoad)
+        script.removeEventListener('error', onScriptError)
+      }
     }
-
-    const onScriptError = () => {
-      delete loadedScripts.src
-
-      setState({
-        loaded: true,
-        error: true
-      })
-    }
-
-    script.addEventListener('load', onScriptLoad)
-    script.addEventListener('complete', onScriptLoad)
-    script.addEventListener('error', onScriptError)
-
-    document.body.appendChild(script)
-
-    return () => {
-      script.removeEventListener('load', onScriptLoad)
-      script.removeEventListener('complete', onScriptLoad)
-      script.removeEventListener('error', onScriptError)
-    }
-  }, [])
+  }, [src])
 
   return [state.loaded, state.error]
 }

@@ -2,32 +2,49 @@
 import { useEffect } from 'react'
 import { PaymentProps } from './@types/index'
 import useScript from './script'
+import { callLazerpayPop } from './actions/lazerpay-actions'
 
-type LazerFuncs = {
-  setup: () => void
-  open: () => void
-}
-export interface LazerpayProps {
-  payment: (config: PaymentProps) => LazerFuncs
-}
-declare const window: Window &
-  typeof globalThis & {
-    Lazerpay: LazerpayProps
-  }
-const useLazerpay = (options: PaymentProps) => {
-  const [loaded, error] = useScript()
-  useEffect(() => {
-    if (error) throw new Error('Unable to load lazerpay modal')
-  }, [error])
+export default function usePaystackPayment(options: PaymentProps) {
+  const [scriptLoaded, scriptError] = useScript()
+  const {
+    publicKey,
+    customerName,
+    customerEmail,
+    currency,
+    businessLogo,
+    amount,
+    onError,
+    onSuccess,
+    onClose
+  } = options
 
-  const initializePayment = () => {
-    if (error) throw new Error('Unable to load lazerpay checkout modal')
-    if (loaded) {
-      const checkout = window.Lazerpay && window.Lazerpay.payment(options)
-      checkout.setup()
-      return checkout.open()
+  function initializePayment(): void {
+    if (scriptError) {
+      throw new Error('Unable to load paystack inline script')
+    }
+
+    if (scriptLoaded) {
+      const LazerpayArgs = {
+        publicKey,
+        customerName,
+        customerEmail,
+        currency,
+        businessLogo,
+        amount,
+        onError,
+        onSuccess,
+        onClose
+      }
+      callLazerpayPop(LazerpayArgs)
     }
   }
+  console.log(scriptLoaded, 'scriptloaded')
+
+  useEffect(() => {
+    if (scriptError) {
+      throw new Error('Unable to load lazerpay inline script')
+    }
+  }, [scriptError])
+
   return initializePayment
 }
-export default useLazerpay

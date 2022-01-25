@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { useLazerpay } from '../../src/index'
-import 'lazerpay-react/dist/index.css'
+import { useLazerpay } from './dist/index'
 
 const App = () => {
   const config = {
