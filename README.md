@@ -1,6 +1,6 @@
-# Lazerpay Official react-native sdk
+# Lazerpay Official react sdk
 
-Lazerpay SDK allows you accept payments easily in your react-native application
+Lazerpay SDK allows you accept payments easily in your react application
 
 <img src="https://raw.githubusercontent.com/njokuScript/screenshots/master/react-1.png" alt='screenshot of SDK'  />
 
