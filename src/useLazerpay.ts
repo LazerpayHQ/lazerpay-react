@@ -38,7 +38,6 @@ export default function usePaystackPayment(options: PaymentProps) {
       callLazerpayPop(LazerpayArgs)
     }
   }
-  console.log(scriptLoaded, 'scriptloaded')
 
   useEffect(() => {
     if (scriptError) {

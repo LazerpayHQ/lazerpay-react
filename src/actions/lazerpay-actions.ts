@@ -1,5 +1,4 @@
 export const callLazerpayPop = (LazerpayArgs: any): void => {
-  console.log(LazerpayArgs, 'arg')
   // @ts-ignore
   return (
     // @ts-ignore
