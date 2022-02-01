@@ -28,6 +28,7 @@ const App = () => {
     customerEmail: 'CUSTOMER EMAIL',
     currency: 'CURRENCY', // USD, NGN, AED, GBP, EUR
     amount: '10', // amount as a number or string
+    userReference: 'XUASO90120', // unique identifier
     onSuccess: (response) => {
       // handle response here
     },
@@ -57,6 +58,7 @@ const App = () => {
 - [`customerEmail`](#customerEmail)
 - [`currency`](#currency)
 - [`amount`](#amount)
+- [`userReference`](#userReference)
 - [`onSuccess`](#onSuccess)
 - [`onError`](#onError)
 - [`onClose`](#onClose)
@@ -85,6 +87,12 @@ The name of the fiat currency the merchant accepts
 
 **number | string: Required**
 The amount you want to charge the user in `currency`
+
+
+### <a name="userReference"></a> `userReference`
+
+**string | string: Optional**
+a unique string used to identifier the user
 
 ### <a name="businessLogo"></a> `businessLogo`
 
