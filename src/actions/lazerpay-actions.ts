@@ -11,7 +11,7 @@ export const callLazerpayPop = (LazerpayArgs: any): void => {
       key: LazerpayArgs.publicKey,
       logo: LazerpayArgs.businessLogo || '',
       currency: LazerpayArgs.currency || '',
-      userReference: LazerpayArgs.userReference || '',
+      userReference: LazerpayArgs.reference || '',
       onClose: LazerpayArgs.onClose(),
       onSuccess: LazerpayArgs.onSuccess(),
       onError: LazerpayArgs.onError()
