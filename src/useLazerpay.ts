@@ -4,7 +4,7 @@ import { PaymentProps } from './@types/index'
 import useScript from './script'
 import { callLazerpayPop } from './actions/lazerpay-actions'
 
-export default function usePaystackPayment(options: PaymentProps) {
+export default function useLazerpayPayment(options: PaymentProps) {
   const [scriptLoaded, scriptError] = useScript()
   const {
     publicKey,
@@ -21,7 +21,7 @@ export default function usePaystackPayment(options: PaymentProps) {
 
   function initializePayment(): void {
     if (scriptError) {
-      throw new Error('Unable to load paystack inline script')
+      throw new Error('Unable to load Lazerpay inline script')
     }
 
     if (scriptLoaded) {

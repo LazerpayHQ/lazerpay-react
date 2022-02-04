@@ -14,11 +14,12 @@ const App = () => {
     onSuccess: (data: any) => {
       console.log(data, 'success data')
     },
-
+    onClose: () => {
+      console.log('closed')
+    },
     onError: (data: any) => {
       console.error(data)
-    },
-    onClose: () => {}
+    }
   }
   const initializePayment = useLazerpay(config)
 
