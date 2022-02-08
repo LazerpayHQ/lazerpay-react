@@ -6,6 +6,7 @@ export type PaymentProps = {
   amount: number | string
   businessLogo?: string
   reference?: string
+  acceptPartialPayment?: boolean
   onError: (event: string) => void
   onSuccess: (event: string) => void
   onClose: () => void

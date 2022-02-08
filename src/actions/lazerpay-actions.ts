@@ -12,6 +12,7 @@ export const callLazerpayPop = (LazerpayArgs: any): void => {
       logo: LazerpayArgs.businessLogo || '',
       currency: LazerpayArgs.currency || '',
       reference: LazerpayArgs.reference || '',
+      acceptPartialPayment: LazerpayArgs.acceptPartialPayment,
       onClose: LazerpayArgs.onClose,
       onSuccess: LazerpayArgs.onSuccess,
       onError: LazerpayArgs.onError

@@ -9,6 +9,7 @@ const App = () => {
     customerEmail: 'kalunjoku123@gmail.com',
     currency: 'USD',
     amount: '5',
+    acceptPartialPayment: true,
     businessLogo:
       'https://pbs.twimg.com/profile_images/1463770588921618442/_jAzCZFA_400x400.jpg',
     onSuccess: (data: any) => {
@@ -21,6 +22,7 @@ const App = () => {
       console.error(data)
     }
   }
+  console.log(config, 'here')
   const initializePayment = useLazerpay(config)
 
   return (
