@@ -52,7 +52,7 @@ const App = () => {
 }
 ```
 ### NOTE
-`reference` has to be updated after a successful partial payment to enable re-initialization.
+`reference` has to be updated after any successful partial payment to enable re-initialization.
 
 ## Configuration Options
 
