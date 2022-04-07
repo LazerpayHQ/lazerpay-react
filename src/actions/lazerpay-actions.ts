@@ -13,8 +13,8 @@ export const callLazerpayPop = (LazerpayArgs: any): void => {
       currency: LazerpayArgs.currency || '',
       reference: LazerpayArgs.reference || '',
       acceptPartialPayment: LazerpayArgs.acceptPartialPayment,
-      paymentLinkId: LazerpayArgs.paymentLinkId,
-      paymentButtonId: LazerpayArgs.paymentButtonId,
+      paymentLinkId: LazerpayArgs.paymentLinkId || '',
+      paymentButtonId: LazerpayArgs.paymentButtonId || '',
       onClose: LazerpayArgs.onClose,
       onSuccess: LazerpayArgs.onSuccess,
       onError: LazerpayArgs.onError
