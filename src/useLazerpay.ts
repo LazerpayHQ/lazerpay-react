@@ -15,6 +15,8 @@ export default function useLazerpayPayment(options: PaymentProps) {
     reference,
     acceptPartialPayment,
     amount,
+    paymentLinkId,
+    paymentButtonId,
     onError,
     onSuccess,
     onClose
@@ -35,6 +37,8 @@ export default function useLazerpayPayment(options: PaymentProps) {
         reference,
         acceptPartialPayment,
         amount,
+        paymentLinkId,
+        paymentButtonId,
         onError,
         onSuccess,
         onClose
