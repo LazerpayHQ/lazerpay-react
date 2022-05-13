@@ -17,6 +17,7 @@ export default function useLazerpayPayment(options: PaymentProps) {
     amount,
     paymentLinkId,
     paymentButtonId,
+    metadata,
     onError,
     onSuccess,
     onClose
@@ -39,6 +40,7 @@ export default function useLazerpayPayment(options: PaymentProps) {
         amount,
         paymentLinkId,
         paymentButtonId,
+        metadata,
         onError,
         onSuccess,
         onClose

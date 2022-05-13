@@ -1,3 +1,7 @@
+type MetaObject = {
+  [name: string]: string | number
+}
+
 export type PaymentProps = {
   publicKey: string
   customerName?: string
@@ -9,6 +13,7 @@ export type PaymentProps = {
   acceptPartialPayment?: boolean
   paymentLinkId?: string
   paymentButtonId?: string
+  metadata?: MetaObject
   onError: (event: string) => void
   onSuccess: (event: string) => void
   onClose: () => void

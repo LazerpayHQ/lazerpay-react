@@ -15,6 +15,7 @@ export const callLazerpayPop = (LazerpayArgs: any): void => {
       acceptPartialPayment: LazerpayArgs.acceptPartialPayment,
       paymentLinkId: LazerpayArgs.paymentLinkId || '',
       paymentButtonId: LazerpayArgs.paymentButtonId || '',
+      metadata: LazerpayArgs.metadata || {},
       onClose: LazerpayArgs.onClose,
       onSuccess: LazerpayArgs.onSuccess,
       onError: LazerpayArgs.onError
