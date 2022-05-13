@@ -35,10 +35,10 @@ const App = () => {
     amount: '10', // amount as a number or string
     reference: 'XUASO90120', // unique identifier
     acceptPartialPayment: true,
+    metadata, // metadata (optional) is an object of information you wish to pass
     onSuccess: (response) => {
       // handle response here
     },
-    metadata, // metadata (optional) is an object of information you wish to pass
     onClose: () => {
       //handle response here
     },
