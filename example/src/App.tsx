@@ -8,7 +8,7 @@ const App = () => {
     customerName: 'Njoku Emmanuel',
     customerEmail: 'kalunjoku123@gmail.com',
     currency: 'USD',
-    reference: '90opp9',
+    reference: '90opjjjjhp9',
     amount: '5',
     acceptPartialPayment: true,
     businessLogo:
@@ -21,7 +21,8 @@ const App = () => {
     },
     onError: (data: any) => {
       console.error(data)
-    }
+    },
+    metadata: { 'hi man': 'hello girl' }
   }
   console.log(config, 'here')
   const initializePayment = useLazerpay(config)

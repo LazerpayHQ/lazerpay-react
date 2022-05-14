@@ -21,6 +21,11 @@ npm install lazerpay-react
 ```js
 import { useLazerpay } from 'lazerpay-react'
 
+const metadata = {
+  'product name': 'Burger and Pepsi',
+  'Product Owner': 'Jeremiah Daniel'
+}
+
 const App = () => {
   config = {
     publicKey: 'PUBLIC_KEY',
@@ -30,6 +35,7 @@ const App = () => {
     amount: '10', // amount as a number or string
     reference: 'XUASO90120', // unique identifier
     acceptPartialPayment: true,
+    metadata, // metadata (optional) is an object of information you wish to pass
     onSuccess: (response) => {
       // handle response here
     },
@@ -51,7 +57,9 @@ const App = () => {
   )
 }
 ```
+
 ### NOTE
+
 `reference` has to be updated after any successful partial payment to enable re-initialization.
 
 ## Configuration Options
@@ -61,6 +69,7 @@ const App = () => {
 - [`customerEmail`](#customerEmail)
 - [`currency`](#currency)
 - [`amount`](#amount)
+- [`metadata`](#metadata)
 - [`reference`](#reference)
 - [`onSuccess`](#onSuccess)
 - [`onError`](#onError)
@@ -90,6 +99,11 @@ The name of the fiat currency the merchant accepts
 
 **number | string: Required**
 The amount you want to charge the user in `currency`
+
+### <a name="metadata"></a> `metadata`
+
+**object : Optional**
+This contains any additional information you want to pass with this transaction
 
 ### <a name="reference"></a> `reference`
 
