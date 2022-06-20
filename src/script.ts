@@ -7,8 +7,7 @@ interface IScriptResult {
 }
 
 export default function useLazerpayScript(): boolean[] {
-  const src =
-    'https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout%401.0.1/dist/index.min.js'
+  const src = 'https://js.lazerpay.finance/v1/index.min.js'
 
   const [state, setState] = useState<IScriptResult>({
     loaded: false,
