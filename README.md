@@ -176,7 +176,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## Support
 
-If you're having trouble with Lazerpay React Native SDK or your integration, please reach out to us at <help@lazerpay.finance> or come chat with us on Slack. We're more than happy to help you out.
+If you're having trouble with Lazerpay React Native SDK or your integration, please reach out to us at <support@lazerpay.finance> or come chat with us on Slack. We're more than happy to help you out.
 
 ## License
 
