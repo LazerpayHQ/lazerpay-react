@@ -14,6 +14,7 @@ export type PaymentProps = {
   paymentLinkId?: string
   paymentButtonId?: string
   metadata?: MetaObject
+  cdnUrl?: string
   onError: (event: string) => void
   onSuccess: (event: string) => void
   onClose: () => void

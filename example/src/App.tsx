@@ -24,7 +24,7 @@ const App = () => {
     },
     metadata: { 'hi man': 'hello girl' }
   }
-  console.log(config, 'here')
+
   const initializePayment = useLazerpay(config)
 
   return (
