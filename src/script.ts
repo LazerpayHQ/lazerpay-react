@@ -15,7 +15,7 @@ export default function useLazerpayScript(): boolean[] {
     loaded: false,
     error: false
   })
-  console.log('this is cdn', cdn)
+
   const cdnUrl = localStorage.getItem('lazerpay-cdn')
 
   useEffect(() => {
