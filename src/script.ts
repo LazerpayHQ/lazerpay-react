@@ -9,7 +9,7 @@ interface IScriptResult {
 
 export default function useLazerpayScript(): boolean[] {
   const [cdn, handleCdn] = useCdn()
-  const src = 'https://js.lazerpay.finance/v1/index.min.js'
+  const src = 'https://js.lazerpay.finance/v1/prod/index.min.js'
 
   const [state, setState] = useState<IScriptResult>({
     loaded: false,
