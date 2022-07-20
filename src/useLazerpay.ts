@@ -6,6 +6,7 @@ import { callLazerpayPop } from './actions/lazerpay-actions'
 
 export default function useLazerpayPayment(options: PaymentProps) {
   const [scriptLoaded, scriptError] = useScript()
+
   const {
     publicKey,
     customerName,
@@ -18,6 +19,7 @@ export default function useLazerpayPayment(options: PaymentProps) {
     paymentLinkId,
     paymentButtonId,
     metadata,
+    cdnUrl,
     onError,
     onSuccess,
     onClose
@@ -54,6 +56,12 @@ export default function useLazerpayPayment(options: PaymentProps) {
       throw new Error('Unable to load lazerpay inline script')
     }
   }, [scriptError])
+
+  useEffect(() => {
+    if (cdnUrl) {
+      localStorage.setItem('lazerpay-cdn', cdnUrl)
+    } else localStorage.removeItem('lazerpay-cdn')
+  }, [cdnUrl])
 
   return initializePayment
 }

@@ -4,11 +4,11 @@ import { useLazerpay } from './dist/index'
 
 const App = () => {
   const config = {
-    publicKey: 'pk_live_0N24k7lsrr7NGfrDQpIjPGy9z61LkXjUqxX3r99XblXHemwMht',
+    publicKey: 'pk_live_0N24k7lsrr7NGfrDQpIjPGy9z61LkXjUqxX3r99XblXHemwMht', // live key
     customerName: 'Njoku Emmanuel',
     customerEmail: 'kalunjoku123@gmail.com',
     currency: 'USD',
-    reference: '90opjjjjhp9',
+    reference: '90opjhghghgjjjhp9',
     amount: '5',
     acceptPartialPayment: true,
     businessLogo:
@@ -22,9 +22,9 @@ const App = () => {
     onError: (data: any) => {
       console.error(data)
     },
-    metadata: { 'hi man': 'hello girl' }
+    metadata: { 'user address': '23b Lekki Right, Lagos' }
   }
-  console.log(config, 'here')
+
   const initializePayment = useLazerpay(config)
 
   return (

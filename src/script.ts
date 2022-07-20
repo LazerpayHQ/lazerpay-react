@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import useCdn from './useCdn'
 
 const cachedScripts: string[] = []
 interface IScriptResult {
@@ -7,56 +8,65 @@ interface IScriptResult {
 }
 
 export default function useLazerpayScript(): boolean[] {
-  const src = 'https://js.lazerpay.finance/v1/index.min.js'
+  const [cdn, handleCdn] = useCdn()
+  const src = 'https://js.lazerpay.finance/v1/prod/index.min.js'
 
   const [state, setState] = useState<IScriptResult>({
     loaded: false,
     error: false
   })
 
+  const cdnUrl = localStorage.getItem('lazerpay-cdn')
+
+  useEffect(() => {
+    handleCdn(cdnUrl || src)
+  }, [cdnUrl])
+
   useEffect((): any => {
-    if (cachedScripts.includes(src)) {
-      setState({
-        loaded: true,
-        error: false
-      })
-    } else {
-      cachedScripts.push(src)
-
-      const script = document.createElement('script')
-      script.src = src
-      script.async = true
-
-      const onScriptLoad = (): void => {
+    if (cdn) {
+      if (cachedScripts.includes(cdn)) {
         setState({
           loaded: true,
           error: false
         })
-      }
+      } else {
+        cachedScripts.push(cdn)
 
-      const onScriptError = (): void => {
-        const index = cachedScripts.indexOf(src)
-        if (index >= 0) cachedScripts.splice(index, 1)
-        script.remove()
+        const script = document.createElement('script')
+        script.src = cdn
+        script.async = true
 
-        setState({
-          loaded: true,
-          error: true
-        })
-      }
+        const onScriptLoad = (): void => {
+          setState({
+            loaded: true,
+            error: false
+          })
+        }
 
-      script.addEventListener('load', onScriptLoad)
-      script.addEventListener('complete', onScriptLoad)
-      script.addEventListener('error', onScriptError)
+        const onScriptError = (): void => {
+          const index = cachedScripts.indexOf(cdn)
+          if (index >= 0) cachedScripts.splice(index, 1)
+          script.remove()
 
-      document.body.appendChild(script)
+          setState({
+            loaded: true,
+            error: true
+          })
+        }
 
-      return (): void => {
-        script.removeEventListener('load', onScriptLoad)
-        script.removeEventListener('error', onScriptError)
+        script.addEventListener('load', onScriptLoad)
+        script.addEventListener('complete', onScriptLoad)
+        script.addEventListener('error', onScriptError)
+
+        document.body.appendChild(script)
+
+        return (): void => {
+          script.removeEventListener('load', onScriptLoad)
+          script.removeEventListener('error', onScriptError)
+        }
       }
     }
-  }, [src])
+  }, [cdn])
 
   return [state.loaded, state.error]
 }
