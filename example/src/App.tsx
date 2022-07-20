@@ -22,7 +22,7 @@ const App = () => {
     onError: (data: any) => {
       console.error(data)
     },
-    metadata: { 'hi man': 'hello girl' }
+    metadata: { 'user address': '23b Lekki Right, Lagos' }
   }
 
   const initializePayment = useLazerpay(config)
