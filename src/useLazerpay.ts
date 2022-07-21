@@ -58,9 +58,11 @@ export default function useLazerpayPayment(options: PaymentProps) {
   }, [scriptError])
 
   useEffect(() => {
-    if (cdnUrl) {
-      localStorage.setItem('lazerpay-cdn', cdnUrl)
-    } else localStorage.removeItem('lazerpay-cdn')
+    if (typeof window !== 'undefined') {
+      if (cdnUrl) {
+        localStorage.setItem('lazerpay-cdn', cdnUrl)
+      } else localStorage.removeItem('lazerpay-cdn')
+    }
   }, [cdnUrl])
 
   return initializePayment

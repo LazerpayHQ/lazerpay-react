@@ -16,7 +16,11 @@ export default function useLazerpayScript(): boolean[] {
     error: false
   })
 
-  const cdnUrl = localStorage.getItem('lazerpay-cdn')
+  let cdnUrl: any
+
+  if (typeof window !== 'undefined') {
+    cdnUrl = localStorage.getItem('lazerpay-cdn')
+  }
 
   useEffect(() => {
     handleCdn(cdnUrl || src)

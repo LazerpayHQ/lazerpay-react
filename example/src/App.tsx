@@ -8,7 +8,7 @@ const App = () => {
     customerName: 'Njoku Emmanuel',
     customerEmail: 'kalunjoku123@gmail.com',
     currency: 'USD',
-    reference: '90opjhghghgjjjhp9',
+    reference: '90opjhghghgkkjjjh89',
     amount: '5',
     acceptPartialPayment: true,
     businessLogo:
